@@ -1,0 +1,240 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Inter', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .animate-in {
+    animation: fadeInUp 0.3s ease-out;
+  }
+
+  .gradient-green {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  }
+
+  .gradient-amber {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  }
+
+  .card-hover {
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* ====================== */
+/* AUTH PAGE ANIMATIONS   */
+/* ====================== */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes floatBlob1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(40px, -30px) scale(1.05); }
+  66%       { transform: translate(-20px, 20px) scale(0.97); }
+}
+
+@keyframes floatBlob2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(-30px, 40px) scale(1.08); }
+  66%       { transform: translate(20px, -20px) scale(0.95); }
+}
+
+@keyframes floatBlob3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(20px, -40px) scale(1.04); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.95); }
+}
+
+@keyframes ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes checkmark {
+  0%   { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* Auth-specific utility classes */
+.auth-blob-1 { animation: floatBlob1 12s ease-in-out infinite; }
+.auth-blob-2 { animation: floatBlob2 15s ease-in-out infinite 2s; }
+.auth-blob-3 { animation: floatBlob3 10s ease-in-out infinite 4s; }
+.auth-spin   { animation: spinSlow 20s linear infinite; }
+.auth-pulse  { animation: pulseGlow 2.5s ease-in-out infinite; }
+.auth-ping   { animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite; }
+
+.auth-fade-left  { animation: fadeInLeft 0.6s ease-out both; }
+.auth-fade-right { animation: fadeInRight 0.6s ease-out both; }
+.auth-fade-up    { animation: fadeInUp 0.5s ease-out both; }
+.auth-scale-in   { animation: scaleIn 0.4s ease-out both; }
+.auth-slide-down { animation: slideDown 0.3s ease-out both; }
+
+/* Staggered delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+
+/* Auth dark input override — ensures inputs look correct on dark backgrounds */
+.auth-input {
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+  padding: 0 44px 0 44px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  outline: none;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  caret-color: #4ade80;
+}
+
+.auth-input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.auth-input:focus {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(74, 222, 128, 0.5);
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.1), 0 0 20px rgba(74, 222, 128, 0.05);
+}
+
+.auth-input:hover:not(:focus) {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.auth-input-no-pad-right {
+  padding-right: 44px;
+}
+
+/* Select dropdown dark override */
+.auth-select-content {
+  background: #0d1117 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 14px !important;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(74,222,128,0.05) !important;
+}
+
+.auth-select-item {
+  color: #cbd5e1 !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  transition: background 0.15s, color 0.15s !important;
+  border-radius: 8px !important;
+}
+
+.auth-select-item:hover,
+.auth-select-item[data-highlighted] {
+  background: rgba(74, 222, 128, 0.1) !important;
+  color: #4ade80 !important;
+}
+
+/* Gradient text utility */
+.text-gradient-green {
+  background: linear-gradient(90deg, #4ade80, #34d399, #6ee7b7);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Password strength bar */
+.strength-bar {
+  height: 3px;
+  border-radius: 2px;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+/* Feature card hover */
+.feature-card {
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  cursor: default;
+}
+
+.feature-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(74, 222, 128, 0.15) !important;
+}
